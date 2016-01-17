@@ -1,3 +1,7 @@
+@using System.Linq
+@helper PostDate(DateTime rawDate) {
+    <time datetime="@rawDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")" pubdate data-updated="true">@rawDate.ToString("MMM d, yyyy")</time>
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +16,14 @@
     <title>Clean Blog</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="http://bartsokol.github.io//stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="@Model.Root/stylesheets/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="http://bartsokol.github.io//stylesheets/clean-blog.min.css" rel="stylesheet">
+    <link href="@Model.Root/stylesheets/clean-blog.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="http://bartsokol.github.io//stylesheets/styles.css">
-    <link rel="stylesheet" href="http://bartsokol.github.io//stylesheets/pygment_trac.css">
-    <link rel="shortcut icon" href="http://bartsokol.github.io//favicon.png">
+    <link rel="stylesheet" href="@Model.Root/stylesheets/styles.css">
+    <link rel="stylesheet" href="@Model.Root/stylesheets/pygment_trac.css">
+    <link rel="shortcut icon" href="@Model.Root/favicon.png">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -34,8 +38,8 @@
     <![endif]-->
     
     <!-- FSharp.Formatting Styles -->
-  	<link rel="stylesheet" type="text/css" media="screen" href="http://bartsokol.github.io//fsharp.formatting/tooltips.css" />
-  	<script type="text/javascript" src="http://bartsokol.github.io//fsharp.formatting/tooltips.js"></script>
+  	<link rel="stylesheet" type="text/css" media="screen" href="@Model.Root/fsharp.formatting/tooltips.css" />
+  	<script type="text/javascript" src="@Model.Root/fsharp.formatting/tooltips.js"></script>
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
@@ -52,23 +56,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://bartsokol.github.io//index.html">FsBlog</a>
+                <a class="navbar-brand" href="@Model.Root/index.html">FsBlog</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="http://bartsokol.github.io//index.html">Home</a>
+                        <a href="@Model.Root/index.html">Home</a>
                     </li>
                     <li>
-                        <a href="http://bartsokol.github.io//about.html">About</a>
+                        <a href="@Model.Root/about.html">About</a>
                     </li>
                     <li>
-                        <a href="http://bartsokol.github.io//post.html">Sample Post</a>
+                        <a href="@Model.Root/post.html">Sample Post</a>
                     </li>
                     <li>
-                        <a href="http://bartsokol.github.io//contact.html">Contact</a>
+                        <a href="@Model.Root/contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -97,30 +101,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            @foreach (var post in Enumerable.Take(Model.Posts, 5))
+                {
                 <div class="post-preview">
-                    <a href="http://bartsokol.github.io//blog/2013/11-09-getting-started/index.html">
-                        <h2 class="post-title">Getting Started</h2>
-                        <h3 class="post-subtitle"><p>If you've much experience with other static site generators like <em>Octopress</em> or <em>Jekyll</em> most of this should be fairly familiar, if not, hopefully it won't be too difficult to pick up.</p>
-
-
-</h3>
+                    <a href="@Model.Root/blog/@post.Url/index.html">
+                        <h2 class="post-title">@post.Title</h2>
+                        <h3 class="post-subtitle">@post.Abstract</h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on     <time datetime="2013-11-09T12:38:14" pubdate data-updated="true">lis 9, 2013</time>
-</p>
+                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on @PostDate(post.Date)</p>
                 </div>
                 <hr>
-                <div class="post-preview">
-                    <a href="http://bartsokol.github.io//blog/2013/11-08-hello-fsblog/index.html">
-                        <h2 class="post-title">Hello, FsBlog!</h2>
-                        <h3 class="post-subtitle"><p><strong>FsBlog</strong> aims to be a blog-aware static site generator, mostly built in <code>F#</code> for .NET and Mono developers.</p>
-
-
-</h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on     <time datetime="2013-11-08T11:27:31" pubdate data-updated="true">lis 8, 2013</time>
-</p>
-                </div>
-                <hr>
+                }
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
@@ -130,32 +121,7 @@
             </div>
         </div>
         <div class="row">
-            
-
-<h1>Hello, FsBlog!</h1>
-
-<p><strong>FsBlog</strong> aims to be a blog-aware static site generator, mostly built in <code>F#</code> for .NET and Mono developers. But don't worry, you won't even need to know any F# to get up and running. So long as you are comfortable using a command line or terminal, and have a degree of familiarity with Markdown and Razor syntax - you're already most of the way there!</p>
-
-<p>Inpired by the likes of <strong>Jekyll</strong> and <strong>Octopress</strong> - and greatly helped along the way by the scripts behind <a href="https://twitter.com/tomaspetricek">@tomaspetricek</a>'s personal website; FsBlog gives the average .NET or Mono dev the tools that they need to get a statically built website up and running quickly and hosted somewhere like <a href="http://pages.github.com/">Github Pages</a>.</p>
-
-<p>This set of tools have been pulled together using some of the following community projects:</p>
-
-<ul>
-<li><a href="http://fsharp.github.io/FAKE/">FAKE</a> for automation and scripting of the different tasks.</li>
-<li><a href="http://tpetricek.github.io/FSharp.Formatting/">F# Formatting</a> for Markdown and F# literate programming, processing and colorization.</li>
-<li><a href="https://github.com/Antaris/RazorEngine">RazorEngine</a> which is used for the templating and embedded <code>C#</code> code.</li>
-<li>Some of the code in <strong>FsBlogLib</strong> that calls the <strong>RazorEngine</strong> has been based on F# code in <a href="https://github.com/aktowns/tilde">Tilde</a>.</li>
-<li><a href="http://pages.github.com/">Github Pages</a> for our default theme.</li>
-</ul>
-
-<h2>Development</h2>
-
-<p>It is very early days and we haven't yet reached anything vaguely resembling a version 1.0 of the software.</p>
-
-<p>You can track the progress of the development, outstanding issues and check what we're working towards by checking out the <a href="https://github.com/fsprojects/FsBlog/issues/milestones">Issues and Milestones</a> section of our repository.</p>
-
-<p>If you find a bug, or have a request or whatever - please raise a new issue there! or even better make the change and open a pull request.</p>
-
+            @RenderBody()
         </div>
     </div>
 
@@ -199,13 +165,13 @@
     </footer>
     
     <!-- jQuery -->
-    <script src="http://bartsokol.github.io//javascripts/jquery.js"></script>
+    <script src="@Model.Root/javascripts/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://bartsokol.github.io//javascripts/bootstrap.min.js"></script>
+    <script src="@Model.Root/javascripts/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="http://bartsokol.github.io//javascripts/clean-blog.min.js"></script>
+    <script src="@Model.Root/javascripts/clean-blog.min.js"></script>
 
 </body>
 

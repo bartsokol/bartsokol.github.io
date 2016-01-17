@@ -131,30 +131,94 @@
         </div>
         <div class="row">
             
+<h1>Getting Started</h1>
 
-<h1>Hello, FsBlog!</h1>
-
-<p><strong>FsBlog</strong> aims to be a blog-aware static site generator, mostly built in <code>F#</code> for .NET and Mono developers. But don't worry, you won't even need to know any F# to get up and running. So long as you are comfortable using a command line or terminal, and have a degree of familiarity with Markdown and Razor syntax - you're already most of the way there!</p>
-
-<p>Inpired by the likes of <strong>Jekyll</strong> and <strong>Octopress</strong> - and greatly helped along the way by the scripts behind <a href="https://twitter.com/tomaspetricek">@tomaspetricek</a>'s personal website; FsBlog gives the average .NET or Mono dev the tools that they need to get a statically built website up and running quickly and hosted somewhere like <a href="http://pages.github.com/">Github Pages</a>.</p>
-
-<p>This set of tools have been pulled together using some of the following community projects:</p>
-
+<p>If you've much experience with other static site generators like <em>Octopress</em> or <em>Jekyll</em> most of this should be fairly familiar, if not, hopefully it won't be too difficult to pick up.</p>
+<!--more-->
+<h2>Command line</h2>
+<p>FsBlog tends to rely on the fact that you're using the command line or terminal - almost all interaction with FsBlog and git are documented as such.</p>
+<h2>Dependencies</h2>
+<p>Although X-Platform is a goal for the <a href="https://github.com/fsprojects/FsBlog/issues?milestone=2&amp;state=open">not-too-distant-future</a> - at the moment you'll need:</p>
 <ul>
-<li><a href="http://fsharp.github.io/FAKE/">FAKE</a> for automation and scripting of the different tasks.</li>
-<li><a href="http://tpetricek.github.io/FSharp.Formatting/">F# Formatting</a> for Markdown and F# literate programming, processing and colorization.</li>
-<li><a href="https://github.com/Antaris/RazorEngine">RazorEngine</a> which is used for the templating and embedded <code>C#</code> code.</li>
-<li>Some of the code in <strong>FsBlogLib</strong> that calls the <strong>RazorEngine</strong> has been based on F# code in <a href="https://github.com/aktowns/tilde">Tilde</a>.</li>
-<li><a href="http://pages.github.com/">Github Pages</a> for our default theme.</li>
+<li>.NET 4.5</li>
+<li>F# 3.0</li>
+<li>VS2012 or VS2013</li>
+<li>A git client</li>
 </ul>
+<p>If you follow the instructions for <a href="http://fsharp.org/use/windows/">using F# on Windows</a> you'll probably be good to go.</p>
+<h2>1. Setup FsBlog</h2>
+<p>First you'll need to clone the repo. On your command line, using git:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">git</span> <span class="i">clone</span> <span class="i">git</span><span class="o">:</span><span class="c">//github.com/fsprojects/FsBlog.git FsBlog</span>
+<span class="i">cd</span> <span class="i">FsBlog</span>
+</code></pre></td>
+</tr>
+</table>
+<p>Next, run the build:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">build</span>
+</code></pre></td>
+</tr>
+</table>
+<p>This should install a few <a href="http://www.nuget.org/">NuGet</a> dependencies that FsBlog makes use of.</p>
+<h2>2. Configuration</h2>
+<p>Using your favourite F# code editor, edit the following section of the <code>./fsblog.fsx</code> file in your repo:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// --------------------------------------------------------------------------------------</span>
+<span class="c">// Configuration.</span>
+<span class="c">// --------------------------------------------------------------------------------------</span>
+<span class="i">Environment</span><span class="o">.</span><span class="i">CurrentDirectory</span> <span class="o">&lt;-</span> <span class="k">__SOURCE_DIRECTORY__</span>
+<span class="k">let</span> <span class="i">root</span> <span class="o">=</span> <span class="s">&quot;http://fsprojects.github.io/FsBlog&quot;</span>
+<span class="k">let</span> <span class="i">title</span> <span class="o">=</span> <span class="s">&quot;FsBlog - F# static site generation&quot;</span>
+<span class="k">let</span> <span class="i">description</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">    FsBlog aims to be a blog-aware static site generator, mostly built in F#. But don&#39;t worry, </span>
+<span class="s">    you won&#39;t even need to know any F# to get up and running. So long as you are comfortable </span>
+<span class="s">    using a command line or terminal, and have a degree of familiarity with Markdown and Razor </span>
+<span class="s">    syntax - you&#39;re good to go!&quot;&quot;&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+<p>There isn't a whole lot to change right now, but at some point you'll be able to configure a Twitter handle, GitHub account etc.</p>
+<h2>3. Create a post</h2>
+<p>Again on your command line:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">fake</span> <span class="k">new</span> <span class="i">post</span><span class="o">=</span><span class="s">&quot;post title&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+<p>This will create a new file in the following location, ready for you to edit: <code>./source/blog/yyyy/MM-dd-title.md</code>.</p>
+<h2>4. Generate and preview</h2>
+<p>You can generate your website at any time from the command line using the following command:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">fake</span> <span class="i">generate</span>
+</code></pre></td>
+</tr>
+</table>
+<p>If you also want to preview your website, you can run the following command:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">fake</span> <span class="i">preview</span>
+</code></pre></td>
+</tr>
+</table>
+<p>The <code>preview</code> command will also <code>generate</code> the website too.</p>
 
-<h2>Development</h2>
-
-<p>It is very early days and we haven't yet reached anything vaguely resembling a version 1.0 of the software.</p>
-
-<p>You can track the progress of the development, outstanding issues and check what we're working towards by checking out the <a href="https://github.com/fsprojects/FsBlog/issues/milestones">Issues and Milestones</a> section of our repository.</p>
-
-<p>If you find a bug, or have a request or whatever - please raise a new issue there! or even better make the change and open a pull request.</p>
 
         </div>
     </div>
