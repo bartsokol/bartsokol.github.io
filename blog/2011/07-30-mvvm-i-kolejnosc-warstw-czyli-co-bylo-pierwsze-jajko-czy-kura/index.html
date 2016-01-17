@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MVVM i kolejność warstw, czyli co było pierwsze - jajko czy kura?</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://bartsokol.github.io//favicon.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://bartsokol.github.io//stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="http://bartsokol.github.io//stylesheets/clean-blog.min.css" rel="stylesheet">
+    <link href="http://bartsokol.github.io//stylesheets/pygment_trac.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- FSharp.Formatting Styles -->
+  	<link rel="stylesheet" type="text/css" media="screen" href="http://bartsokol.github.io//fsharp.formatting/tooltips.css" />
+  	<script type="text/javascript" src="http://bartsokol.github.io//fsharp.formatting/tooltips.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://bartsokol.github.io/">Bart = Design + Code</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://bartsokol.github.io/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://bartsokol.github.io//blog/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://bartsokol.github.io//about/">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <!-- Main Content -->
+    
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>MVVM i kolejność warstw, czyli co było pierwsze - jajko czy kura?</h1>
+                    <h2 class="subheading"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+<p>Mała zmiana tematu po kilku miesiącach - opowiem dziś coś niecoś o technologiach ze stajni Microsoftu i związanych z nimi wzorcami. A tak konkretniej to będzie to (bodajże najpopularniejszy) wzorzec związany z Silverlight i Windows Presentation Foundation (WPF) - czyli MVVM. Opowiem jaka powinna być (moim skromnym zdaniem) kolejność tworzenia poszczególnych warstw, co postaram się poprzeć "dowodami", nie koniecznie formalnymi. Opowiem również o związanych z implementacją wzorca problemach i być może nawet o rozwiązaniach tych problemów.
+<!--more--></p>
+<h3>Co powinno być pierwsze - view czy view model?</h3>
+<p>Odpowiedź jest jedna, czasem podważana przez niektórych przedstawicieli programistycznego świata. Otóż brzmi ona tak: View. A dlaczegóż tak?</p>
+<p>Zacznę może od poprawnej nazwy wzorca MVVM - powinna ona brzmieć VVMM, czyli View -&gt; ViewModel -&gt; Model. Dlaczego taka kolejność jest tak ważna? Otóż wszystko wynika ze słowa - klucza związanego z tym i innymi wzorcami - separacji. Każda z tych warstw powinna być możliwie najluźniej związana z warstwą o poziom niższą, natomiast o warstwie "2 dalej" nie powinna nic wiedzieć (dotyczy to szczególnie widoku). Ważny jest również kierunek strzałek - określa on kierunek powstawania kolejnych warstw. Każda strzałka daje również możliwość przecięcia - łącznie z możliwością całkowitego wyeliminowania powiązań między warstwami. Osiągnięcie tego jest jak najbardziej możliwe i wcale nie tak trudne, jak się z początku wydaje. Korzystając z jednego z wielu dostępnych frameworków wspierających MVVM można w dość krótkim czasie skonstruować elegancką aplikację, która w dodatku będzie miała przejrzysty i czytelny kod.</p>
+<h3>Narzędzia</h3>
+<p>Jednym z takich "wspomagaczy" jest dostarczany przez zespół Microsoft Patterns &amp; Practices framework Prism (wcześniej zwany również jako Composite Application Guidance) wraz z bibliotekami IoC (Inversion of Control) Unity lub MEF. Dostarcza on zestaw niezbędnych klas i interfejsów (np. commands, behaviours, regions), które ułatwiają budowę aplikacji nie tylko zgodnej z MVVM, ale również modularnej, składającej się z luźno powiązanych ze sobą projektów. Jeżeli tworzymy rozbudowaną aplikację biznesową to warto się przyjrzeć temu rozbudowanemu narzędziu. Oczywiście dostępne są również inne biblioteki (np. bardzo ciekawy MVVM Light Toolkit) i wybór konkretnej z nich jest kwestią potrzeb i preferencji związanych z konkretnym projektem.</p>
+<h3>A dlaczego tak? cz. 1 - blendability</h3>
+<p>Wracając do podziału na warstwy i ich kolejności - dlaczego taka kolejność ma takie znaczenie? Odpowiedź może nie wydawać się oczywista, ale nie wymaga żadnej tajemnej wiedzy, aby ją zrozumieć i zastosować. Po pierwsze - dlaczego widok powinien być niezależny od view modela, ale jednocześnie tworzyć jego instancję? (i to w code behind!)</p>
+<p>Taka kolejność wynika ze ścisłego związku ze strukturą aplikacji w WPF/SL. Jako że widok to w 95% deklaratywny kod XAML (pozostałe 5% to fragment tworzący VM w code behind oraz kod klasy bazowej widoków), który może być tworzony zarówno w Visual Studio, Expression Blend jak i innych narzędziach (jak np. Kaxaml czy Notepad :-) ), nie było by rozsądnym tworzenie i wiązanie go z poziomu kodu logiki aplikacji. Znacząco utrudniało by to (lub wręcz uniemożliwiało) projektowanie interfejsu niezależnie od logiki działania aplikacji. Przy odpowiedniej separacji mamy możliwość wygenerowania danych testowych i projektowania niezależnie od implementacji (której może w ogóle jeszcze nie być), co w przypadku Expression Blend jest wyjątkowo proste i wygodne. Dodając do tego ignorowanie code behind przez Blenda mamy pierwszą część odpowiedzi, która w dodatku zostanie poparta przez następną część.</p>
+<h3>A dlaczego tak? cz.2 - testability</h3>
+<p>Mając widok, który w razie potrzeby tworzy sobie (prawdziwy lub mockowany przez designera) view model, jesteśmy w stanie całkowicie uniezależnić logikę działania od interfejsu użytkownika. Taką możliwość daje nam VM, który nie ma żadnych bezpośrednich zależności z widokiem (a konkretniej jego implementacją). Zgodnie z wcześniejszą tezą jesteśmy w stanie uciąć powiązanie pomiędzy VM a pozostałymi warstwami i wykonać niezależne (automatyczne) testy logiki działania aplikacji. Wymaga to oczywiście przygotowania mockowanych modeli danych, jednak nie powinno to stanowić większego problemu. W ten sposób otrzymujemy trzy niezależne warstwy i każdą z nich jesteśmy w stanie osobno tworzyć i testować. Dodatkowo przy odpowiedniej konstrukcji warstwy te są niezależne od pozostałych komponentów aplikacji nie związanych bezpośrednio z MVVM, jak np. usług dostarczających dane i logikę biznesową czy konwerterów i stylów wspomagających konstrukcję UI.</p>
+<h3>Problemy i rozwiązania</h3>
+<p>Podstawowym problemem przy separacji pomiędzy V a VM jest kwestia nawigacji w aplikacji oraz reakcji na działania użytkownika. W tym przypadku z pomocą przychodzą takie narzędzia jak Region Navigation, Behaviour no i oczywiście Delegate Command, dostępne w bibliotece Prism. Umożliwiają one (pewnym, acz wcale nie wielkim nakładem pracy) stworzenie warstwy pośredniczącej w komunikacji pomiędzy logiką a interfejsem, która będzie w wygodny i jednocześnie zgodny z MVVM sposób przekazywać informacje pomiędzy V a VM. W razie wątpliwości lub chęci poszerzenia swojej wiedzy polecam lekturę (dostępnej za darmo na stronie Prisma) książki <em>Developer's Guide to Microsoft Prism</em>. Dostarcza ona solidną dawkę informacji na temat konstrukcji aplikacji kompozytowych, zarówno jeżeli chodzi o UI, jak i strukturę całej aplikacji, a w dodatku napisana jest w dość przystępny i przejrzysty sposób. Ale oczywiście nic nie zastąpi praktyki, więc najlepsze co można zrobić aby dobrze zrozumieć wzorzec MVVM to usiąść i napisać choćby prostą aplikację, wykorzystując dostępną (lub zdobytą np. z podanej lektury) wiedzę. Powodzenia!</p>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://twitter.com/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pl.linkedin.com/in/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Bartosz Sokół 2016. Theme based on <a href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="http://bartsokol.github.io//javascripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://bartsokol.github.io//javascripts/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://bartsokol.github.io//javascripts/clean-blog.min.js"></script>
+
+</body>
+
+</html>

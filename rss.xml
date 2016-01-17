@@ -5,21 +5,51 @@
     <description>Technology. By human, for human.
 </description>
     <item>
-      <title>Getting Started</title>
-      <guid>http://bartsokol.github.io//blog/2013/11-09-getting-started</guid>
-      <link>http://bartsokol.github.io//blog/2013/11-09-getting-started/index.html</link>
-      <pubDate>Sat, 09 Nov 2013 11:38:14 GMT</pubDate>
-      <description>&lt;p&gt;If you've much experience with other static site generators like &lt;em&gt;Octopress&lt;/em&gt; or &lt;em&gt;Jekyll&lt;/em&gt; most of this should be fairly familiar, if not, hopefully it won't be too difficult to pick up.&lt;/p&gt;
+      <title>Developing software for public institutions</title>
+      <guid>http://bartsokol.github.io//blog/2014/11-19-developing-software-for-public-institutions</guid>
+      <link>http://bartsokol.github.io//blog/2014/11-19-developing-software-for-public-institutions/index.html</link>
+      <pubDate>Wed, 19 Nov 2014 12:24:30 GMT</pubDate>
+      <description>&lt;p&gt;In these days it's hard to imagine any bigger organisation to work without proper software supporting its everyday tasks. Very often this needs to be highly specific system that cover custom data and custom workflows, but also specific tools and technologies used within the organisation. There are also many common functionalities across institutions, e.g. shared by multiple universities or government organs. And seeing how it's currently handled in Polish institutions pushes me to ask: how hard can it be?&lt;/p&gt;
 
 
 </description>
     </item>
     <item>
-      <title>Hello, FsBlog!</title>
-      <guid>http://bartsokol.github.io//blog/2013/11-08-hello-fsblog</guid>
-      <link>http://bartsokol.github.io//blog/2013/11-08-hello-fsblog/index.html</link>
-      <pubDate>Fri, 08 Nov 2013 10:27:31 GMT</pubDate>
-      <description>&lt;p&gt;&lt;strong&gt;FsBlog&lt;/strong&gt; aims to be a blog-aware static site generator, mostly built in &lt;code&gt;F#&lt;/code&gt; for .NET and Mono developers.&lt;/p&gt;
+      <title>Not so short story of the software testing</title>
+      <guid>http://bartsokol.github.io//blog/2014/10-19-not-so-short-story-of-the-software-testing</guid>
+      <link>http://bartsokol.github.io//blog/2014/10-19-not-so-short-story-of-the-software-testing/index.html</link>
+      <pubDate>Sun, 19 Oct 2014 10:37:48 GMT</pubDate>
+      <description>&lt;p&gt;Today I'll tell you a story about testing.&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
+      <title>Software Transactional Memory - prosta implementacja w C#</title>
+      <guid>http://bartsokol.github.io//blog/2011/09-15-software-transactional-memory-prosta-implementacja-w-c</guid>
+      <link>http://bartsokol.github.io//blog/2011/09-15-software-transactional-memory-prosta-implementacja-w-c/index.html</link>
+      <pubDate>Thu, 15 Sep 2011 17:50:12 GMT</pubDate>
+      <description>&lt;p&gt;Ostatnio zderzyłem się z problemem transakcyjnej pamięci (STM) i właściwie brakiem dostępnych implementacji w C# (poza &lt;a href="http://code.google.com/p/nstm/" title="NSTM"&gt;NSTM&lt;/a&gt;). Różne wariacje na temat które powstały przez lata w stajni Microsoftu nie doczekały się do dnia dzisiejszego funkcjonującej implementacji (głównie dlatego, że zdecydowano - całkiem rozsądnie - że wsparcie dla tego mechanizmu powinno być na poziomie CLR). Dla osób zainteresowanych tematem przedstawię w skrócie moją implementację, zapewne nie pozbawioną wad, jednak mającą jedną zasadniczą zaletę - prostotę implementacji i użycia. Zatem zapraszam do lektury :-)&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
+      <title>MVVM i kolejność warstw, czyli co było pierwsze - jajko czy kura?</title>
+      <guid>http://bartsokol.github.io//blog/2011/07-30-mvvm-i-kolejnosc-warstw-czyli-co-bylo-pierwsze-jajko-czy-kura</guid>
+      <link>http://bartsokol.github.io//blog/2011/07-30-mvvm-i-kolejnosc-warstw-czyli-co-bylo-pierwsze-jajko-czy-kura/index.html</link>
+      <pubDate>Sat, 30 Jul 2011 10:46:50 GMT</pubDate>
+      <description>&lt;p&gt;Mała zmiana tematu po kilku miesiącach - opowiem dziś coś niecoś o technologiach ze stajni Microsoftu i związanych z nimi wzorcami. A tak konkretniej to będzie to (bodajże najpopularniejszy) wzorzec związany z Silverlight i Windows Presentation Foundation (WPF) - czyli MVVM. Opowiem jaka powinna być (moim skromnym zdaniem) kolejność tworzenia poszczególnych warstw, co postaram się poprzeć "dowodami", nie koniecznie formalnymi. Opowiem również o związanych z implementacją wzorca problemach i być może nawet o rozwiązaniach tych problemów.&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
+      <title>There's absolutely no bubble in technology</title>
+      <guid>http://bartsokol.github.io//blog/2010/03-06-theres-absolutely-no-bubble-in-technology</guid>
+      <link>http://bartsokol.github.io//blog/2010/03-06-theres-absolutely-no-bubble-in-technology/index.html</link>
+      <pubDate>Sat, 06 Mar 2010 19:15:44 GMT</pubDate>
+      <description>&lt;p&gt;Or is it?&lt;/p&gt;
 
 
 </description>

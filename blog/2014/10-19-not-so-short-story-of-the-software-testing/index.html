@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>About me</title>
+    <title>Not so short story of the software testing</title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="http://bartsokol.github.io//favicon.png">
@@ -78,33 +78,50 @@
     
 
 <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="page-heading">
-                    <h1>About me</h1>
-                    <hr class="small">
-                    <span class="subheading">Hi, my name is Bart</span>
+                <div class="post-heading">
+                    <h1>Not so short story of the software testing</h1>
+                    <h2 class="subheading">Today I'll tell you a story about testing.</h2>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Page Content -->
-<div class="container">
-    
-<p>Hello and welcome to my blog! My name is Bart and I'm software developer and architect.
-I used to work with different technologies, the most recent being is Microsoft stack (.NET).
-I put a lot of attention to quality of the solutions I work on - from technical, business and usability perspectives.
-Currently I'm focusing on functional and reactive programming, especially on F# language.
-My areas of interest for future development are data science and machine learning.</p>
-<p>If you want to get in touch with me don't hesitate to mail me using <em>bart (at) bart-sokol.info</em> address.
-You can also use Twitter or LinkedIn - links provided below.</p>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+<p>Today I'll tell you a story about testing.</p>
+<!--more-->
+<h2>The story begins</h2>
+<p>Some long, long time ago human race started to code. Everyone was happy that the software they're writing was working (well, in most cases it wasn't, but let's skip it). So they kept writing even more software, and begun creating <em>systems</em>, not <em>only</em> programs. And then, one day, someone asked the programmer: "How can I be sure that the system you've developed works as expected?". "Well, you can test it.", he answered. And the whole story of software testing begun.</p>
+<h2>Evolution</h2>
+<p>First, it was all manual. Someone just thrown few numbers into system and checked if output was correct. Then someone discovered that he can program the same, and the first automated tests were there. They would probably be called now <em>integration tests</em>, as they were crossing the whole system, not only one piece of software.</p>
+<p>As systems got even more complicated, developers introduced <em>layers</em>, and discovered that each layer can be tested independently. By coincidence, object-oriented programming was on everybody's tongue, so someone said "Hey, let's test just one class at once!". And we arrived at the very beginning of every modern programmer's testing experience - writing <em>unit tests</em>.</p>
+<h2>Expansion</h2>
+<p>So, now you test <em>each and every</em> class in your code. You've got perfect code coverage figure. And you run your software, and bang! It explodes. Database has change since the last time you've checked. So, as an experienced developer, you go and write integration tests (sounds familiar?). Then to make sure your perfect UI (it's always perfect) works well too, you write <em>coded UI tests</em>. And now you think you can sleep well.</p>
+<h2>Bad things happen</h2>
+<p>Until one day critical bug is found on production environment. You wake up at night, write <em>regression test</em> to verify it and fix it ASAP. Once again, tests saved you and let you have less nightmares.</p>
+<p>But the customer is always unhappy. With your latests release performance of the software degraded drastically and everyone asks why. As you're now an unquestioned expert in software testing, you sit down and write <em>performance tests</em> that measure each and every important piece of code, compare the results and tell you where is the bottleneck you have to fix. Once again you are a hero, and the world is saved, they don't have to wait 500 ms for search results. Now it only takes 400.</p>
+<h2>What else should I know?</h2>
+<p>There are plenty of tests that you should be aware of. Smoke tests that let you quickly judge software environment stability; security tests that cover most common security flaws and let you know how unsecure your system is; and a whole bunch of other manual or automated tests that can be proceeded.</p>
+<h2>Wait, manual?! I can write a code!</h2>
+<p>Yes, manual. Manual testing is as important as automated (or even more). There are millions of things that computers can't notice, things that cannot (and shouldn't) be automated. Some may say that everything can be coded; the answer is yes, but what's the cost? Is it worth automating <em>everything</em>?</p>
+<h2>But hey, I'm a developer, not tester!</h2>
+<p>You are, and your responsibility is to make sure (and prove in many cases) that what you've developed is highest possible quality and works <em>as expected</em>. Of course, there should be some QA team that would help you with this, but remember that they are to <em>support</em> you, not to <em>replace</em> you. I would cover more on each team member responsibilities in one of the next posts.</p>
+<p>The story end here for today. Hope you've enjoyed it and you would start thinking more about the quality next time you estimate your task. The road to glory is here long and bumpy, but don't be afraid! The world would be thankful!</p>
 
 
-</div>
+            </div>
+        </div>
+    </div>
+</article>
 
     <!-- Footer -->
     <footer>
