@@ -13,17 +13,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog</title>
+    <title>@Title</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="@Model.Root/favicon.png">
 
     <!-- Bootstrap Core CSS -->
     <link href="@Model.Root/stylesheets/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="@Model.Root/stylesheets/clean-blog.min.css" rel="stylesheet">
-
-    <!--<link rel="stylesheet" href="@Model.Root/stylesheets/styles.css">
-    <link rel="stylesheet" href="@Model.Root/stylesheets/pygment_trac.css">-->
-    <link rel="shortcut icon" href="@Model.Root/favicon.png">
+    <link href="@Model.Root/stylesheets/pygment_trac.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="@Model.Root/index.html">FsBlog</a>
+                <a class="navbar-brand" href="@Model.Root/index.html">@Title</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,13 +66,10 @@
                         <a href="@Model.Root/index.html">Home</a>
                     </li>
                     <li>
+                        <a href="@Model.Root/post.html">Blog</a>
+                    </li>
+                    <li>
                         <a href="@Model.Root/about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="@Model.Root/post.html">Sample Post</a>
-                    </li>
-                    <li>
-                        <a href="@Model.Root/contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -88,9 +85,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>@Title</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">@Description</span>
                     </div>
                 </div>
             </div>
@@ -98,34 +95,7 @@
     </header>
     
     <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            @foreach (var post in Enumerable.Take(Model.Posts, 5))
-                {
-                <div class="post-preview">
-                    <a href="@Model.Root/blog/@post.Url/index.html">
-                        <h2 class="post-title">@post.Title</h2>
-                        <h3 class="post-subtitle">@post.Abstract</h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on @PostDate(post.Date)</p>
-                </div>
-                <hr>
-                }
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            @RenderBody()
-        </div>
-    </div>
-
-    <hr>
+    @RenderBody()
 
     <!-- Footer -->
     <footer>
@@ -134,7 +104,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
                         <li>
-                            <a href="#">
+                            <a href="https://twitter.com/bartsokol">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -142,15 +112,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://pl.linkedin.com/in/bartsokol">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://github.com/bartsokol">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -158,7 +128,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="copyright text-muted">Copyright &copy; Bartosz Sokół 2016</p>
                 </div>
             </div>
         </div>
