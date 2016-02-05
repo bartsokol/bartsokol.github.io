@@ -5,6 +5,16 @@
     <description>Technology. By human, for human.
 </description>
     <item>
+      <title>Riot.js and Material Design Lite on Windows</title>
+      <guid>http://bartsokol.github.io//blog/2016/02-05-riotjs-and-material-design-lite-on-windows</guid>
+      <link>http://bartsokol.github.io//blog/2016/02-05-riotjs-and-material-design-lite-on-windows/index.html</link>
+      <pubDate>Fri, 05 Feb 2016 23:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Recently I wanted to build a small web app for my own purposes (more like an experiment) and I was thinking how to approach it. For whatever reason I decided to go with SPA-like approach, having simple HTTP service as a backend and some simple yet powerfull enough web app as a frontend. And as you probably know, the choice now is overwhelming - think Angular, React, Polymer, and so on. All of those libraries give you a lot of possibilities, but also come at cost. Not only they are heavy to download, but also they have quite steep learning curve and bring a lot of stuff which you'll never use in a simple app. In the search of alternative solutions I encountered small library called &lt;a href="http://riotjs.com/"&gt;Riot.js&lt;/a&gt;, introducing itself as "React-like user interface micro-library". Quickly looking at some samples and docs I decided to give it a try. And as some things weren't as simple as I expected, I decided to put together a quick start guide with solutions to the issues I've encountered. So here you are :)&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
       <title>Developing software for public institutions</title>
       <guid>http://bartsokol.github.io//blog/2014/11-19-developing-software-for-public-institutions</guid>
       <link>http://bartsokol.github.io//blog/2014/11-19-developing-software-for-public-institutions/index.html</link>
