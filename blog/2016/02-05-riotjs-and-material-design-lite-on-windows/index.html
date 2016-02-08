@@ -106,34 +106,28 @@
 <span class="l">2: </span>
 <span class="l">3: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">npm</span> <span class="i">install</span> <span class="o">-</span><span class="i">g</span> <span class="i">bower</span>
-<span class="i">npm</span> <span class="i">install</span> <span class="o">-</span><span class="i">g</span> <span class="i">riot</span>
-<span class="i">npm</span> <span class="i">install</span> <span class="o">-</span><span class="i">g</span> <span class="i">http</span><span class="o">-</span><span class="i">server</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip"><code lang="console">npm install -g bower
+npm install -g riot
+npm install -g http-server
+</code></pre></td></tr></table>
 <p><em></em> Some side note here - most of it is not needed; you can download everything from Riot site, but it won't be so cool, so you'd better stick with proposed approach*</p>
 <h2>Bootstrapping the project</h2>
 <p>Once ready, you can start bootstrapping your project. Create some folder where you're going to keep your project, then navigate to it in your console window and type next magic command:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">bower</span> <span class="i">install</span> <span class="i">riot</span> <span class="o">--</span><span class="i">save</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip"><code lang="console">bower install riot --save
+</code></pre></td></tr></table>
 <p>You should have now <code>bower_components</code> folder with Riot library inside. You can now create index file in your editor of choice (if you have no idea what to use, give <a href="https://atom.io/">Atom</a> or <a href="http://brackets.io/">Brackets</a> a try). Create <code>index.html</code> file with HTML5 document structure and start adding required references. At the bottom of your <code>body</code> tag add reference to Riot.js:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">body</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/bower_components/riot/riot.min.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="i">body</span><span class="o">&gt;</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="html"><span class="k">&lt;</span><span class="i">body</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">script</span> <span class="o">src</span><span class="k">="/bower_components/riot/riot.min.js"</span><span class="k">&gt;&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">body</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
 <p>There is also riot+compiler version available, but given the style library I will offer you to use it is better to stick with the minimalistic approach.</p>
 <h2>Your first Riot tag</h2>
 <p>Once you're done with the previous steps, you can start adding your first tag. Create a folder you're going to use to store your tags in (I'd go with <code>tags</code> for purpose of this guide) and create a new file. Name it as you want to name your tag (not a requirement, but seems to be a good choice) with <code>.tag</code> extension, keeping in mind that recommended naming scheme is two-part: use names like <code>login-form</code>, <code>login-failed</code>, <code>item-list</code>, <code>item-details</code> etc. Again, not a requirement from Riot, but recommendation from W3C, so better stick with it.
@@ -143,13 +137,11 @@ Inside your new file start creating your new tag. If you decided to create <code
 <span class="l">3: </span>
 <span class="l">4: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">list</span><span class="o">&gt;</span>
-	
-	
-<span class="o">&lt;/</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="i">list</span><span class="o">&gt;</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="html"><span class="k">&lt;</span><span class="i">item-list</span><span class="k">&gt;</span>
+    ...(your HTML code goes here)...
+    ...(and JS code below it)...
+<span class="k">&lt;/</span><span class="i">item-list</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
 <p>And save it as <code>item-list.tag</code>. Your first custom tag is ready! Well, almost. You need to use it somehow on your page. Navigate to <code>index.html</code> file in your editor and add a bit of plumbing code there:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
@@ -159,32 +151,26 @@ Inside your new file start creating your new tag. If you decided to create <code
 <span class="l">6: </span>
 <span class="l">7: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">body</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/bower_components/riot/riot.min.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="i">script</span><span class="o">&gt;</span>
-		<span class="i">riot</span><span class="o">.</span><span class="i">mount</span>(<span class="o">&#39;</span><span class="i">item</span><span class="o">-</span><span class="i">list&#39;</span>)
-	<span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="i">body</span><span class="o">&gt;</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="html"><span class="k">&lt;</span><span class="i">body</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">script</span> <span class="o">src</span><span class="k">="/bower_components/riot/riot.min.js"</span><span class="k">&gt;&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+    &lt;script&gt;
+        riot.mount(<span class="s">'item-list'</span>)
+    <span class="k">&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">body</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
 <p>This will mount the tag into your document's DOM. The only thing left is to somehow translate your tag so it can be actually used on your page. And here we encounter the biggest issue.</p>
 <h2>Finding the right command</h2>
 <p>All Riot.js tags need to be compiled before they can be used on your page. You can just use version of Riot.js with compiler built in, but it won't work well with many style frameworks, including MDL (more on that later). So, let's go with compilation - shouldn't be hard. Let's try:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">riot</span> <span class="i">tags</span><span class="o">/</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="i">list</span><span class="o">.</span><span class="i">tag</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip"><code lang="console">riot tags/item-list.tag
+</code></pre></td></tr></table>
 <p>Mission failed. At least for me. Command not found. Nah, not the <code>riot</code> command, it is present in path. The issue is inside <code>riot</code> command, which is trying to run <code>sh.exe</code> - which is not present on my system. So, what can we do now? We have to go deeper. In the installation folder for Node modules you need to search for riot module and check if you have the right command inside. For me it was found here:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">C</span><span class="o">:</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip"><code lang="console">C:\Users\{username}\AppData\Roaming\npm\node_modules\riot\node_modules\.bin\riot.cmd
+</code></pre></td></tr></table>
 <p>This one uses node.exe to run Riot JavaScript code, and it's working fine. So you can stick with it, create some script which will compile it, create some Gulp task or whatever - just remember to point it to right script*. Once your tag is compiled, you should get <code>item-list.js</code> file in your <code>tags</code> folder. If yes, then let's move to next step.</p>
 <p><em></em> Yes, I should probably raise an issue (or even PR) to Riot.js to solve it. Maybe later. Or maybe you can do it? :)*</p>
 <h2>Including your tag in your code</h2>
@@ -200,28 +186,24 @@ Inside your new file start creating your new tag. If you decided to create <code
 <span class="l"> 9: </span>
 <span class="l">10: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">body</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="i">list</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="i">list</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/bower_components/riot/riot.min.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/tags/item-list.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="i">script</span><span class="o">&gt;</span>
-		<span class="i">riot</span><span class="o">.</span><span class="i">mount</span>(<span class="o">&#39;</span><span class="i">item</span><span class="o">-</span><span class="i">list&#39;</span>)
-	<span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="i">body</span><span class="o">&gt;</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="html"><span class="k">&lt;</span><span class="i">body</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">item-list</span><span class="k">&gt;&lt;/</span><span class="i">item-list</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">script</span> <span class="o">src</span><span class="k">="/bower_components/riot/riot.min.js"</span><span class="k">&gt;&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+    &lt;script src=<span class="s">"/tags/item-list.js"</span><span class="o">&gt;</span><span class="o">&lt;</span>/script&gt;
+    &lt;script&gt;
+        riot.mount(<span class="s">'item-list'</span>)
+    <span class="k">&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">body</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
 <p>Now let's see if it works - you can use <code>http-server</code> command installed earlier to serve the files and view them in browser. By default it should start listening on 8080 port, so once you run it navigate to your browser and open <code>localhost:8080</code>. You should see your brand new tag displayed on the page. If not then check all the steps above again ;)</p>
 <h2>Adding some style with Material Design Lite</h2>
 <p>Material Design Lite (MDL) is CSS/JS style framework created by Google, implementing their design language called (ta-da) Material Design. It's maybe not so comprehensive as Bootstrap or other great frameworks, but it provides some high-quality components to build great looking websites utilizing this neat design language. Starting is very simple - you just need to add references to MDL to your HTML file, either from CDNs or from local source. For local development I prefer to have everything locally - you can do it by installing MDL with Bower:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">bower</span> <span class="i">install</span> <span class="i">mdl</span> <span class="o">--</span><span class="i">save</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip"><code lang="console">bower install mdl --save
+</code></pre></td></tr></table>
 <p>Now you can add it to your <code>index.html</code> file, CSS in <code>head</code> section, JS in body:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -239,31 +221,28 @@ Inside your new file start creating your new tag. If you decided to create <code
 <span class="l">14: </span>
 <span class="l">15: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="o">&lt;</span><span class="i">head</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">link</span> <span class="i">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="i">href</span><span class="o">=</span><span class="s">&quot;/bower_components/material-design-lite/material.min.css&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="i">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="i">body</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="i">list</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">item</span><span class="o">-</span><span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="i">list</span><span class="o">&gt;</span>
-	
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/bower_components/material-design-lite/material.min.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/bower_components/riot/riot.min.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="i">script</span> <span class="i">src</span><span class="o">=</span><span class="s">&quot;/tags/item-list.js&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="i">script</span><span class="o">&gt;</span>
-		<span class="i">riot</span><span class="o">.</span><span class="i">mount</span>(<span class="o">&#39;</span><span class="i">item</span><span class="o">-</span><span class="i">list&#39;</span>)
-	<span class="o">&lt;/</span><span class="i">script</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="i">body</span><span class="o">&gt;</span>
-</code></pre></td>
-</tr>
-</table>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="html"><span class="k">&lt;</span><span class="i">head</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">link</span> <span class="o">rel</span><span class="k">="stylesheet"</span> <span class="o">href</span><span class="k">="/bower_components/material-design-lite/material.min.css"</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">head</span><span class="k">&gt;</span>
+<span class="k">&lt;</span><span class="i">body</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">item-list</span><span class="k">&gt;&lt;/</span><span class="i">item-list</span><span class="k">&gt;</span>
+    ...
+    <span class="k">&lt;</span><span class="i">script</span> <span class="o">src</span><span class="k">="/bower_components/material-design-lite/material.min.js"</span><span class="k">&gt;&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+    &lt;script src=<span class="s">"/bower_components/riot/riot.min.js"</span><span class="o">&gt;</span><span class="o">&lt;</span>/script&gt;
+    &lt;script src=<span class="s">"/tags/item-list.js"</span><span class="o">&gt;</span><span class="o">&lt;</span>/script&gt;
+    &lt;script&gt;
+        riot.mount(<span class="s">'item-list'</span>)
+    <span class="k">&lt;/</span><span class="i">script</span><span class="k">&gt;</span>
+<span class="k">&lt;/</span><span class="i">body</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
 <p>Now you can use MDL classes in your elements. Navigate to <a href="https://www.getmdl.io/">MDL website</a> for details how to use it. Once you save your changes, remember to recompile your tags each time you change them! One of the solutions for this is to use <a href="https://github.com/jumilla/atom-riot">riot plugin in Atom</a> which offer auto tag compilation on save. You can also use some file watchers (e.g. using Gulp) to do it for you.</p>
 <p>At this point I should also say few words on why you should compile everything manually instead of simply using riot+compiler script. Unfortunately because of the way MDL is constructed (and some other frameworks as well) it doesn't handle well dynamic DOM, which is how riot+compiler works - it generates DOM objects on the fly. Without precompiled tags many JS-based functionalities provided by MDL just won't work, which will negatively impact both visual and functional aspects of your application. I think the compilation step is not so hard once you set up everything, and MDL seems to be worth the effort :)</p>
 <h2>Summary</h2>
 <p>Now you should have simple yet powerful startup point for your next website or webapp. Setting everything from scratch should let you understand how it works and customize many aspects of your app with ease.
 Using two simple and light libraries you get a lot of things for free, without a lot of effort or cost of investing in larger frameworks. You get modularity, easy management of components and separation of styling from functionality. For sure it won't be solution for every web app you'll want to create, but for small to mid size solutions it should be quite a good choice. And as almost everything is build using very basic tools and in simple manner, moving to some other frameworks in future should be also pretty easy. That's why I praise minimalistic solutions - they let you focus on the purpose of doing things, not the way how to do it.</p>
 
-<div class="tip" id="fs1">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
 
             </div>
         </div>
