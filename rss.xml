@@ -1,13 +1,13 @@
 <rss version="2.0">
   <channel>
     <title>Bart = Design + Code</title>
-    <link>http://bartsokol.github.io/</link>
+    <link>http://bart-sokol.info/</link>
     <description>Technology. By human, for human.
 </description>
     <item>
       <title>Why most of our work environments are counterproductive?</title>
-      <guid>http://bartsokol.github.io//blog/2016/02-09-why-most-of-our-work-environments-are-counterproductive</guid>
-      <link>http://bartsokol.github.io//blog/2016/02-09-why-most-of-our-work-environments-are-counterproductive/index.html</link>
+      <guid>http://bart-sokol.info//blog/2016/02-09-why-most-of-our-work-environments-are-counterproductive</guid>
+      <link>http://bart-sokol.info//blog/2016/02-09-why-most-of-our-work-environments-are-counterproductive/index.html</link>
       <pubDate>Tue, 09 Feb 2016 20:05:00 GMT</pubDate>
       <description>&lt;p&gt;Recently I have read few articles on how our bodies and brains especially work, and how it affects our everyday living. They described how our environment and our habits affect our lives and our health, both physical and mental. It provoked me to think a bit about my experience and observations and I'd like to share it with you.&lt;/p&gt;
 
@@ -16,8 +16,8 @@
     </item>
     <item>
       <title>Riot.js and Material Design Lite on Windows</title>
-      <guid>http://bartsokol.github.io//blog/2016/02-05-riotjs-and-material-design-lite-on-windows</guid>
-      <link>http://bartsokol.github.io//blog/2016/02-05-riotjs-and-material-design-lite-on-windows/index.html</link>
+      <guid>http://bart-sokol.info//blog/2016/02-05-riotjs-and-material-design-lite-on-windows</guid>
+      <link>http://bart-sokol.info//blog/2016/02-05-riotjs-and-material-design-lite-on-windows/index.html</link>
       <pubDate>Fri, 05 Feb 2016 23:00:00 GMT</pubDate>
       <description>&lt;p&gt;Recently I wanted to build a small web app for my own purposes (more like an experiment) and I was thinking how to approach it. For whatever reason I decided to go with SPA-like approach, having simple HTTP service as a backend and some simple yet powerfull enough web app as a frontend. And as you probably know, the choice now is overwhelming - think Angular, React, Polymer, and so on. All of those libraries give you a lot of possibilities, but also come at cost. Not only they are heavy to download, but also they have quite steep learning curve and bring a lot of stuff which you'll never use in a simple app. In the search of alternative solutions I encountered small library called &lt;a href="http://riotjs.com/"&gt;Riot.js&lt;/a&gt;, introducing itself as "React-like user interface micro-library". Quickly looking at some samples and docs I decided to give it a try. And as some things weren't as simple as I expected, I decided to put together a quick start guide with solutions to the issues I've encountered. So here you are :)&lt;/p&gt;
 
@@ -26,8 +26,8 @@
     </item>
     <item>
       <title>Developing software for public institutions</title>
-      <guid>http://bartsokol.github.io//blog/2014/11-19-developing-software-for-public-institutions</guid>
-      <link>http://bartsokol.github.io//blog/2014/11-19-developing-software-for-public-institutions/index.html</link>
+      <guid>http://bart-sokol.info//blog/2014/11-19-developing-software-for-public-institutions</guid>
+      <link>http://bart-sokol.info//blog/2014/11-19-developing-software-for-public-institutions/index.html</link>
       <pubDate>Wed, 19 Nov 2014 12:24:30 GMT</pubDate>
       <description>&lt;p&gt;In these days it's hard to imagine any bigger organisation to work without proper software supporting its everyday tasks. Very often this needs to be highly specific system that cover custom data and custom workflows, but also specific tools and technologies used within the organisation. There are also many common functionalities across institutions, e.g. shared by multiple universities or government organs. And seeing how it's currently handled in Polish institutions pushes me to ask: how hard can it be?&lt;/p&gt;
 
@@ -36,8 +36,8 @@
     </item>
     <item>
       <title>Not so short story of the software testing</title>
-      <guid>http://bartsokol.github.io//blog/2014/10-19-not-so-short-story-of-the-software-testing</guid>
-      <link>http://bartsokol.github.io//blog/2014/10-19-not-so-short-story-of-the-software-testing/index.html</link>
+      <guid>http://bart-sokol.info//blog/2014/10-19-not-so-short-story-of-the-software-testing</guid>
+      <link>http://bart-sokol.info//blog/2014/10-19-not-so-short-story-of-the-software-testing/index.html</link>
       <pubDate>Sun, 19 Oct 2014 10:37:48 GMT</pubDate>
       <description>&lt;p&gt;Today I'll tell you a story about testing.&lt;/p&gt;
 
@@ -46,8 +46,8 @@
     </item>
     <item>
       <title>Software Transactional Memory - prosta implementacja w C#</title>
-      <guid>http://bartsokol.github.io//blog/2011/09-15-software-transactional-memory-prosta-implementacja-w-c</guid>
-      <link>http://bartsokol.github.io//blog/2011/09-15-software-transactional-memory-prosta-implementacja-w-c/index.html</link>
+      <guid>http://bart-sokol.info//blog/2011/09-15-software-transactional-memory-prosta-implementacja-w-c</guid>
+      <link>http://bart-sokol.info//blog/2011/09-15-software-transactional-memory-prosta-implementacja-w-c/index.html</link>
       <pubDate>Thu, 15 Sep 2011 17:50:12 GMT</pubDate>
       <description>&lt;p&gt;Ostatnio zderzyłem się z problemem transakcyjnej pamięci (STM) i właściwie brakiem dostępnych implementacji w C# (poza &lt;a href="http://code.google.com/p/nstm/" title="NSTM"&gt;NSTM&lt;/a&gt;). Różne wariacje na temat które powstały przez lata w stajni Microsoftu nie doczekały się do dnia dzisiejszego funkcjonującej implementacji (głównie dlatego, że zdecydowano - całkiem rozsądnie - że wsparcie dla tego mechanizmu powinno być na poziomie CLR). Dla osób zainteresowanych tematem przedstawię w skrócie moją implementację, zapewne nie pozbawioną wad, jednak mającą jedną zasadniczą zaletę - prostotę implementacji i użycia. Zatem zapraszam do lektury :-)&lt;/p&gt;
 
@@ -56,8 +56,8 @@
     </item>
     <item>
       <title>MVVM i kolejność warstw, czyli co było pierwsze - jajko czy kura?</title>
-      <guid>http://bartsokol.github.io//blog/2011/07-30-mvvm-i-kolejnosc-warstw-czyli-co-bylo-pierwsze-jajko-czy-kura</guid>
-      <link>http://bartsokol.github.io//blog/2011/07-30-mvvm-i-kolejnosc-warstw-czyli-co-bylo-pierwsze-jajko-czy-kura/index.html</link>
+      <guid>http://bart-sokol.info//blog/2011/07-30-mvvm-i-kolejnosc-warstw-czyli-co-bylo-pierwsze-jajko-czy-kura</guid>
+      <link>http://bart-sokol.info//blog/2011/07-30-mvvm-i-kolejnosc-warstw-czyli-co-bylo-pierwsze-jajko-czy-kura/index.html</link>
       <pubDate>Sat, 30 Jul 2011 10:46:50 GMT</pubDate>
       <description>&lt;p&gt;Mała zmiana tematu po kilku miesiącach - opowiem dziś coś niecoś o technologiach ze stajni Microsoftu i związanych z nimi wzorcami. A tak konkretniej to będzie to (bodajże najpopularniejszy) wzorzec związany z Silverlight i Windows Presentation Foundation (WPF) - czyli MVVM. Opowiem jaka powinna być (moim skromnym zdaniem) kolejność tworzenia poszczególnych warstw, co postaram się poprzeć "dowodami", nie koniecznie formalnymi. Opowiem również o związanych z implementacją wzorca problemach i być może nawet o rozwiązaniach tych problemów.&lt;/p&gt;
 
@@ -66,8 +66,8 @@
     </item>
     <item>
       <title>There's absolutely no bubble in technology</title>
-      <guid>http://bartsokol.github.io//blog/2010/03-06-theres-absolutely-no-bubble-in-technology</guid>
-      <link>http://bartsokol.github.io//blog/2010/03-06-theres-absolutely-no-bubble-in-technology/index.html</link>
+      <guid>http://bart-sokol.info//blog/2010/03-06-theres-absolutely-no-bubble-in-technology</guid>
+      <link>http://bart-sokol.info//blog/2010/03-06-theres-absolutely-no-bubble-in-technology/index.html</link>
       <pubDate>Sat, 06 Mar 2010 19:15:44 GMT</pubDate>
       <description>&lt;p&gt;Or is it?&lt;/p&gt;
 
