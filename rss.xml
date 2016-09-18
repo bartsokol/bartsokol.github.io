@@ -5,6 +5,16 @@
     <description>Technology. By human, for human.
 </description>
     <item>
+      <title>Your programming language is probably unproductive</title>
+      <guid>http://bart-sokol.info//blog/2016/09-18-your-programming-language-is-probably-unproductive</guid>
+      <link>http://bart-sokol.info//blog/2016/09-18-your-programming-language-is-probably-unproductive/index.html</link>
+      <pubDate>Sun, 18 Sep 2016 21:20:00 GMT</pubDate>
+      <description>&lt;p&gt;It's really hard to create a good programming language. There are a number of aspects you need to think about, and you'll probably never reach the perfection. Still, there are some things you can take into account to make the code maintainable and easy to use and understand by humans. And similarly, there are things that make the code much harder to read and use effectively. Let's get through some of them.&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
       <title>Why Android sucks and why I'm still using it?</title>
       <guid>http://bart-sokol.info//blog/2016/07-18-why-android-sucks-and-why-im-still-using-it</guid>
       <link>http://bart-sokol.info//blog/2016/07-18-why-android-sucks-and-why-im-still-using-it/index.html</link>
