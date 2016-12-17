@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Six reasons why I find F# a better language than C#</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://bart-sokol.info//favicon.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://bart-sokol.info//stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="http://bart-sokol.info//stylesheets/clean-blog.min.css" rel="stylesheet">
+    <link href="http://bart-sokol.info//stylesheets/pygment_trac.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono:400italic,600italic,800italic,400,600,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- FSharp.Formatting Styles -->
+  	<link rel="stylesheet" type="text/css" media="screen" href="http://bart-sokol.info//fsharp.formatting/tooltips.css" />
+  	<script type="text/javascript" src="http://bart-sokol.info//fsharp.formatting/tooltips.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="alternate" type="application/rss+xml" title="Code and beyond" href="http://bart-sokol.info//rss.xml" />
+</head>
+
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://bart-sokol.info/">Code and beyond</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://bart-sokol.info/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://bart-sokol.info//blog/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://bart-sokol.info//about/">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <!-- Main Content -->
+    
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Six reasons why I find F# a better language than C#</h1>
+                    <h2 class="subheading"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+<p>I was thinking about this post for a while. The more I use F# and speak about it to others, the more often I am asked the same question: what are the advantages of using F#? It's not so hard to find those, but I wanted to have a list that is more like fact list and less like personal preferences. Let's see what I came up with!
+<!--more--></p>
+<p><em>First of all, a disclaimer. This is my personal opinion based on my experiences with both languages. I'm not trying to start any flame wars - I'm looking for strong facts, but they may not be same strong for everyone.</em></p>
+<h2>1. Record types</h2>
+<p>I think there is more or less agreed among developers now that immutability is one of the desired properties for data structures. Sure, there are some cases where mutable types have some advantages (like performance critical code), but those cases are quite rare among the vast amount of code that we write every day. Additionally, there are lots of optimisations made on compile time and in the runtime that make performance impact of immutability almost neglectable, and even in some cases immutable data structures can be more performant (e.g. when doing comparisons between instances).
+But having immutability alone is not enough to be able to work in an effective way. We need to have additional tools to work with immutable types. One of those is the ability to easily create clones with one or more properties changed. This is where F# record types really shine. Let's look at this example:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="t">Person</span> <span class="o">=</span> { <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Name</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="t">string</span>; <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">Age</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="t">int</span> }
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">john</span> <span class="o">=</span> { <span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;John&quot;</span>; <span class="i">Age</span> <span class="o">=</span> <span class="n">27</span> }
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="i">olderJohn</span> <span class="o">=</span> { <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">john</span> <span class="k">with</span> <span class="i">Age</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="i">john</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">Age</span> <span class="o">+</span> <span class="n">1</span> }
+</code></pre></td>
+</tr>
+</table>
+<p>That's all you need to define the type, create an instance and clone it when using F#. Now let's try to write equivalent C# code:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">class</span> Person
+{
+  <span class="k">public</span> Person(<span class="k">string</span> name, <span class="k">int</span> age)
+  {
+    Name <span class="o">=</span> name;
+    Age <span class="o">=</span> age;
+  }
+  <span class="k">public</span> <span class="k">string</span> Name { get; }
+  <span class="k">public</span> <span class="k">int</span> Age { get; }
+}
+</code></pre></td></tr></table>
+<p>That's just immutability, and we already have much more code. How to add cloning and updating values? Well, cloning is pretty easy, we can for example use <code>MemberwiseClone</code> method from System.Object, but we would need to implement it in every type we want to have this. The much harder part is updating the values. In this extremely simple case we can just create new object and copy properties from one to another, but what if we had not 2, but 10, 20 or more properties? Each time we would need to update even one property we would end up with a huge amount of code. I can't really think of an easy way to do it in the current version of C# (apart from some utils using serialization or reflection but that would be ugly and not really performant approach). There are plans to fix it in newer versions of C#, but until it's live we're stuck.</p>
+<h2>2. Collections</h2>
+<p>Immutable records are not the only thing we want to have - we also need to have immutable collections to be able to have fully immutable flow. And while creating an immutable version of existing collection is relatively simple in C# (having things like <code>ReadOnlyCollection</code> and <code>AsReadOnly()</code> LINQ extension), getting updated version with something modified is much harder. In F# you can write:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">items1</span> <span class="o">=</span> [<span class="n">0</span>;<span class="n">1</span>;<span class="n">2</span>;<span class="n">3</span>;<span class="n">4</span>;<span class="n">5</span>]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="i">head</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="i">tail</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs8', 14)" onmouseover="showTip(event, 'fs8', 14)" class="i">items1</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="i">items2</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="i">head</span><span class="o">::</span><span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="i">tail</span>
+</code></pre></td>
+</tr>
+</table>
+<p>Extracting head from the list (or array) is extremely easy, the same is for prepending it to the list. Of course, more complicated cases require the use of other tools like <code>List</code> or <code>Seq</code> modules, but it's there and it's easy to use. There are libraries for C# that make it possible as well - but it's another dependency you need to have in your project, and they are not so deeply integrated into the language.</p>
+<h2>3. Discriminated unions</h2>
+<p>While records are great for keeping data that belong together, it's not the only case we can encounter when implementing some domain logic. I very often find myself in a situation where I want to have a data structure which will contain a different set of information for different cases. Classic object-oriented approach for this would be hiding the implementation behind a common interface and then using a plethora of design patterns to get the right information from the object.
+Let's see how it looks based on a common example: validation. We are getting some data structure which we need to validate according to the set of rules. What we need as an output is some data structure that will describe us what is the result of the validation. This is an example implementation of this in F#:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs12', 18)" onmouseover="showTip(event, 'fs12', 18)" class="t">ValidationResult</span> <span class="o">=</span>
+  | <span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="p">Passed</span>
+  | <span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="p">UnrecognizedProduct</span> <span class="k">of</span> <span class="i">Product</span>
+  | <span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="p">IncorrectPrice</span> <span class="k">of</span> <span class="i">Price</span>
+</code></pre></td>
+</tr>
+</table>
+<p>For simplicty I'll just add few results, but the list can be longer. Let's see how this can be done in C#:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">interface</span> IValidationResult
+{
+    <span class="k">bool</span> IsPassed { get; }
+}
+<span class="k">class</span> Passed <span class="o">:</span> IValidationResult
+{
+    <span class="k">public</span> <span class="k">bool</span> IsPassed { get; } <span class="o">=</span> <span class="k">true</span>;
+}
+<span class="k">class</span> UnrecognizedProduct <span class="o">:</span> IValidationResult
+{
+    <span class="k">public</span> <span class="k">bool</span> IsPassed { get; } <span class="o">=</span> <span class="k">false</span>;
+    <span class="k">public</span> Product InvalidProduct { get; }
+}
+<span class="k">class</span> IncorrectPrice <span class="o">:</span> IValidationResult
+{
+    <span class="k">public</span> <span class="k">bool</span> IsPassed { get; } <span class="o">=</span> <span class="k">false</span>;
+    <span class="k">public</span> Price InvalidPrice { get; }
+}
+</code></pre></td></tr></table>
+<p>I kept formatting brief, but in real code this will be many more lines and potentially even files. Can you see a problem here? We don't have any common structure for all the cases, as they may contain different set of data depending on the kind of the error. But that's not the only problem we have - let's try to translate this result to user friendly message.</p>
+<h2>4. Pattern matching</h2>
+<p>To display the right error message we can use pattern matching in F#:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="f">getTranslation</span> <span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="i">key</span> <span class="o">=</span> 
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 24)" onmouseover="showTip(event, 'fs18', 24)" class="f">getErrorMessage</span> <span class="o">=</span> <span class="k">function</span>
+  | <span onmouseout="hideTip(event, 'fs13', 25)" onmouseover="showTip(event, 'fs13', 25)" class="p">Passed</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs16', 26)" onmouseover="showTip(event, 'fs16', 26)" class="f">getTranslation</span> <span class="s">&quot;passed&quot;</span>
+  | <span onmouseout="hideTip(event, 'fs14', 27)" onmouseover="showTip(event, 'fs14', 27)" class="p">UnrecognizedProduct</span> <span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="i">product</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs20', 29)" onmouseover="showTip(event, 'fs20', 29)" class="f">sprintf</span> (<span onmouseout="hideTip(event, 'fs16', 30)" onmouseover="showTip(event, 'fs16', 30)" class="f">getTranslation</span> <span class="s">&quot;unrecognizedProduct&quot;</span>) <span onmouseout="hideTip(event, 'fs19', 31)" onmouseover="showTip(event, 'fs19', 31)" class="i">product</span><span class="o">.</span><span class="i">Name</span>
+  | <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="p">IncorrectPrice</span> <span onmouseout="hideTip(event, 'fs21', 33)" onmouseover="showTip(event, 'fs21', 33)" class="i">price</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs20', 34)" onmouseover="showTip(event, 'fs20', 34)" class="f">sprintf</span> (<span onmouseout="hideTip(event, 'fs16', 35)" onmouseover="showTip(event, 'fs16', 35)" class="f">getTranslation</span> <span class="s">&quot;incorrectPrice&quot;</span>) <span onmouseout="hideTip(event, 'fs21', 36)" onmouseover="showTip(event, 'fs21', 36)" class="i">price</span><span class="o">.</span><span class="i">Gross</span>
+</code></pre></td>
+</tr>
+</table>
+<p>In C# I can see two approaches. One could be type-checking the result in method full of if's:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">string</span> GetErrorMessage(IValidationResult result)
+{
+  <span class="k">if</span> (result <span class="o">=</span><span class="o">=</span> <span class="k">null</span>)
+    …handle <span class="k">null</span> param somehow…
+  <span class="k">if</span> (result.IsPassed)
+    <span class="k">return</span> GetTranslation(<span class="s">"passed"</span>);
+  <span class="k">if</span> (result.GetType() <span class="o">=</span><span class="o">=</span> <span class="k">typeof</span>(UnrecognizedProduct))
+    <span class="k">return</span> <span class="k">string</span>.Format(GetTranslation(<span class="s">"unrecognizedProduct"</span>), (result <span class="k">as</span> UnrecognizedProduct).InvalidProduct.Name); 
+  <span class="k">if</span> (result.GetType() <span class="o">=</span><span class="o">=</span> <span class="k">typeof</span>(IncorrectPrice))
+    <span class="k">return</span> <span class="k">string</span>.Format(GetTranslation(<span class="s">"incorrectPrice"</span>), (result <span class="k">as</span> IncorrectPrice).InvalidPrice.Gross);
+  …
+}
+</code></pre></td></tr></table>
+<p>The problem with this approach is visible at the end of the method. What to do for other cases? We don't have them yet, but they may be added in the future. With this code you won't get any warning if new implementation of <code>IValidationResult</code> is added to the code, and you need to either ignore it (by returning null, empty string or some generic error message) or throw an exception. Both are not really good ways to keep the code up to date. Can it be done in other way?
+We could change the definition of <code>IValidationResult</code> to have a method which will format the error message:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">interface</span> IValidationResult
+{
+    <span class="k">bool</span> IsPassed { get; }
+    <span class="k">string</span> GetErrorMessage(<span class="k">string</span> translation);
+}
+</code></pre></td></tr></table>
+<p>And then the code could get much simpler:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">string</span> GetErrorMessage(IValidationResult result)
+{
+  <span class="k">if</span> (result <span class="o">=</span><span class="o">=</span> <span class="k">null</span>) { …handle <span class="k">null</span> param somehow… }
+  <span class="k">return</span> result.GetErrorMessage(GetTranslation(<span class="s">"unrecognizedProduct"</span>));
+}
+</code></pre></td></tr></table>
+<p>This is a much safer way to do it as at any time you'll be adding new validation result you'll have to add error formatting logic to it. But there are still some issues with this C# code. One is that we probably need to handle the null result case somehow (which we don't have to do in F#). The other problem is on much higher level - any time you need to check something based on the IValidationResult you would need to extend this class. Imagine you have such logic for a product which has plenty of fields and even more logic to handle different kinds of products etc. You'll end up with huge classes containing both the data and the logic. That would make tracking the logic across the products extremely hard because you need to check it in multiple implementations of the interface. For me, it's very cumbersome way of doing it cause I find code with separation between data structures and logic much easier to understand and track compared to heavy models.</p>
+<h2>5. Error handling</h2>
+<p>Union types have another advantage when it comes to handling errors. There is a common pattern used in F# (and other languages as well) which can be illustrated with this simple type:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs22', 37)" onmouseover="showTip(event, 'fs22', 37)" class="t">Result</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">TSuccess</span>, <span class="o">&#39;</span><span class="i">TFailure</span><span class="o">&gt;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 38)" onmouseover="showTip(event, 'fs23', 38)" class="p">Success</span> <span class="k">of</span> <span class="o">&#39;</span><span class="i">TSuccess</span> | <span onmouseout="hideTip(event, 'fs24', 39)" onmouseover="showTip(event, 'fs24', 39)" class="p">Failure</span> <span class="k">of</span> <span class="o">&#39;</span><span class="i">TFailure</span>
+</code></pre></td>
+</tr>
+</table>
+<p>Having such simple type that allows you to say whether the action succeeded or failed is a great benefit. Not only your output type is more clearly stating that some operation may not succeed and you need to handle the failure, but also you have a very clear way of saying what exactly went wrong. Combine it with simple <code>bind</code> and <code>map</code> functions and you are on the right track - you can start doing Railway Oriented Programming. This deserves a post or even series of its own, but believe me - this is a game changer when it comes to error handling and heading towards error-free code.
+Of course, you can define the similar type in C# (and I would recommend you to do it and start using it) but without pattern matching, partial application and pipe operator it's much more complicated to use. Having defined bind and map functions will help a bit, but you just can't avoid the amount of code you need to write.</p>
+<h2>6. Safe defaults</h2>
+<p>Having a nice way of handling errors is a great thing, but it would be even better to prevent them in the first place. That's where design decisions come in - F# defaults are safer than the ones in C#. Immutable records, collections and bindings (aka "variables"), non-nullable types by default and things like <code>Option</code> type (Maybe monad) baked into the language and standard libraries give you the power to write code which will be free from <code>NullReferrenceException</code> and other C# nightmares. Sure, writing very defensive code in C# can lead you to the same, but it will be at the cost of much more code you need to write.  And the more code you have, the bigger is the chance of having errors. Not to mention that readability and maintainability of the small codebase are much higher. With powerful type system, great type inference and language constructs like pipe and function composition operators, F# offers a lot that C# just cannot give, even in the upcoming (7) version.</p>
+<h2>Summary</h2>
+<p>There are many lessons to be learned from using F#. But the biggest one for me is that C# is no longer the preferred tool when it comes to writing any kind of code. The amount of code you need to write, the unsafe defaults and lack of powerful language constructs makes C# much less appealing than it used to be. The more I experience F#, the more I find it the better choice for general purpose programming. And I would recommend you having your own ride, especially if you're a .NET developer - all the tools you need you probably already have on your machine. And I can guarantee you one thing - it will be cool and safe ride at the same time!</p>
+
+<div class="tip" id="fs1">type Person =<br />&#160;&#160;{Name: string;<br />&#160;&#160;&#160;Age: int;}<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.Person</div>
+<div class="tip" id="fs2">Person.Name: string</div>
+<div class="tip" id="fs3">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs4">Person.Age: int</div>
+<div class="tip" id="fs5">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.int<br /><br />--------------------<br />type int = int32<br /><br />Full name: Microsoft.FSharp.Core.int<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; = int<br /><br />Full name: Microsoft.FSharp.Core.int&lt;_&gt;</div>
+<div class="tip" id="fs6">val john : Person<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.john</div>
+<div class="tip" id="fs7">val olderJohn : Person<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.olderJohn</div>
+<div class="tip" id="fs8">val items1 : int list<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.items1</div>
+<div class="tip" id="fs9">val head : int<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.head</div>
+<div class="tip" id="fs10">val tail : int list<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.tail</div>
+<div class="tip" id="fs11">val items2 : int list<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.items2</div>
+<div class="tip" id="fs12">type ValidationResult =<br />&#160;&#160;| Passed<br />&#160;&#160;| UnrecognizedProduct of obj<br />&#160;&#160;| IncorrectPrice of obj<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.ValidationResult</div>
+<div class="tip" id="fs13">union case ValidationResult.Passed: ValidationResult</div>
+<div class="tip" id="fs14">union case ValidationResult.UnrecognizedProduct: obj -&gt; ValidationResult</div>
+<div class="tip" id="fs15">union case ValidationResult.IncorrectPrice: obj -&gt; ValidationResult</div>
+<div class="tip" id="fs16">val getTranslation : key:&#39;a -&gt; &#39;b<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.getTranslation</div>
+<div class="tip" id="fs17">val key : &#39;a</div>
+<div class="tip" id="fs18">val getErrorMessage : _arg1:ValidationResult -&gt; &#39;a<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.getErrorMessage</div>
+<div class="tip" id="fs19">val product : obj</div>
+<div class="tip" id="fs20">val sprintf : format:Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.sprintf</div>
+<div class="tip" id="fs21">val price : obj</div>
+<div class="tip" id="fs22">type Result&lt;&#39;TSuccess,&#39;TFailure&gt; =<br />&#160;&#160;| Success of &#39;TSuccess<br />&#160;&#160;| Failure of &#39;TFailure<br /><br />Full name: sixreasonswhyifindfsharpabetterlanguagethancsharp.Result&lt;_,_&gt;</div>
+<div class="tip" id="fs23">union case Result.Success: &#39;TSuccess -&gt; Result&lt;&#39;TSuccess,&#39;TFailure&gt;</div>
+<div class="tip" id="fs24">Multiple items<br />union case Result.Failure: &#39;TFailure -&gt; Result&lt;&#39;TSuccess,&#39;TFailure&gt;<br /><br />--------------------<br />active recognizer Failure: exn -&gt; string option<br /><br />Full name: Microsoft.FSharp.Core.Operators.( |Failure|_| )</div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.identifier = '2016-12-17T14:20:00+00:00';
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//bartsokol.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://twitter.com/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pl.linkedin.com/in/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Bartosz Sokół 2016. Theme based on <a href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="http://bart-sokol.info//javascripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://bart-sokol.info//javascripts/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://bart-sokol.info//javascripts/clean-blog.min.js"></script>
+    
+    <!-- Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-3573675-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
