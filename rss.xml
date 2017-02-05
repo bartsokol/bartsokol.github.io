@@ -5,6 +5,16 @@
     <description>Technology. By human, for human.
 </description>
     <item>
+      <title>An alternative take on application architecture</title>
+      <guid>http://bart-sokol.info//blog/2017/02-05-an-alternative-take-on-application-architecture</guid>
+      <link>http://bart-sokol.info//blog/2017/02-05-an-alternative-take-on-application-architecture/index.html</link>
+      <pubDate>Sun, 05 Feb 2017 23:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Do you remember when you have started writing your first programs? It's very likely that the code you've written was very procedural and your carefully crafted instructions were then somehow executed by this magical machine called the computer. Wasn't it fun? It was a lot of fun for me, and if you're reading this then I can assume that it was the same for you. Yet many years later we look at our code and… yeah, we have to look deeper. And deeper. And even deeper. Go to definition. Oh, not that one, the other one. Oh, a little bit deeper. Yes! So here is the bug! Sounds familiar?&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
       <title>Six reasons why I find F# a better language than C#</title>
       <guid>http://bart-sokol.info//blog/2016/12-17-six-reasons-why-i-find-fsharp-a-better-language-than-csharp</guid>
       <link>http://bart-sokol.info//blog/2016/12-17-six-reasons-why-i-find-fsharp-a-better-language-than-csharp/index.html</link>
