@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Approaching Microservices in a safer way</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://bart-sokol.info//favicon.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://bart-sokol.info//stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="http://bart-sokol.info//stylesheets/clean-blog.min.css" rel="stylesheet">
+    <link href="http://bart-sokol.info//stylesheets/pygment_trac.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono:400italic,600italic,800italic,400,600,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- FSharp.Formatting Styles -->
+  	<link rel="stylesheet" type="text/css" media="screen" href="http://bart-sokol.info//fsharp.formatting/tooltips.css" />
+  	<script type="text/javascript" src="http://bart-sokol.info//fsharp.formatting/tooltips.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="alternate" type="application/rss+xml" title="Code and beyond" href="http://bart-sokol.info//rss.xml" />
+</head>
+
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://bart-sokol.info/">Code and beyond</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://bart-sokol.info/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://bart-sokol.info//blog/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://bart-sokol.info//about/">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <!-- Main Content -->
+    
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Approaching Microservices in a safer way</h1>
+                    <h2 class="subheading"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+<p>Microservices. You've probably heard about them million times. It's inevitable to avoid this if you're at least a bit interested in software architecture. Actually, you've heard about them so many times that you have to try them for your own! But should you? Is it the right approach for your application? Will it solve any of your issues? Or will it be the source of a terrible headache? Let's try to get some answers to those questions!
+<!--more--></p>
+<h2>Mythical Microservice</h2>
+<p>If you've heard or read about microservices in multiple places, you've probably already noticed one worrying thing - lack of precise definition of microservice. Of course, there are people telling you that microservice can only have up to 100 lines, or needs to be small enough to be rewritten within a scope of one week, sprint, or whatever. None of those "definitions" tell you anything; in some languages and frameworks 100 lines will be enough to get some functionality up and running; in others, it will take more than that to do just initial bootstrap. The same can be said about time scope - it doesn't say anything about team size, it's capabilities, knowledge of the topic etc.</p>
+<p>It's basically up to you to decide what a microservice is in your environment. I've seen many examples, from ones as simple as single responsibility mail-sending service to large services capturing quite complex domain logic, exposing multiple endpoints and talking to plenty of other services. In my opinion, it really isn't so much about the size per se, rather about the scope. It really helps if you think about your system through the glasses of domain-driven design and its bounded contexts. Each of those contexts makes a perfect candidate for such a microservice. And even if you're not really focusing on incorporating full DDD approach, it may help a lot when looking through its lenses.</p>
+<h2>Start simple</h2>
+<p>So, let's do the microservice thing! Yeah, it's easier said than done. If you're starting from scratch and don't have a strictly defined scope, you probably should start simple. Go with the monolithic approach, extracting only things which are totally separate from your core problem. Perfect candidates for first microservices would be things like interop modules, handling some legacy apps and data, or communicating with external systems. It should help you to embrace what it feels like to have more distributed architecture and get prepared for more.</p>
+<h2>Modular monolith</h2>
+<p>In most cases, you should start with the monolithic approach. One thing you want to do in your monolith is to start thinking about separation of domains and grouping things by them, not by their technical properties. To give you an example, let's say you need to get some information about the products. Information may come from your database or from external service, doesn't really matter. You'll probably create some entities or DTOs to model what you're getting from an external source. You may have some repository or some network level service that would fetch the information. You also may want to use your application-specific view of that data by creating some domain or value object that will capture that data in a useful structure. Then you may want to create the mapper between your internal data structures and the external ones. Finally, you may want to create some service which will expose the functionality of fetching and mapping product data to other parts of your application. The key thing here is to keep all those things together - within one folder, module, namespace - whatever your language and frameworks support. Avoid grouping things by entities, DTOs, mappers, services and so on. By this approach, you'll get less coupling between unrelated components, and less coupling means fewer problems with moving things outside of your monolith.</p>
+<p>For bigger chunks of functionality, it's often quite wise to create separate folders or projects, which will encapsulate all the code related to its domain. Make sure to create some kind of API for it - let it be an interface, for example - and use only it when communicating with that module. Be also very cautious when using data structures defined within that module - you may want to move them out some day, so don't rely too much on what's within that module.</p>
+<h2>Feel the pain</h2>
+<p>While you're still not having microservice architecture, you should already feel the first pain. Keeping things separate means having some duplicated code, an additional mapping between data from different modules, and so on. It's inevitable in microservice world, and it's actually very intentional. The key here is to learn that code reuse isn't the golden principle in software development. Functionality reuse is the other story - and yes, microservice architecture puts focus on reusing bits of functionality, not bits of code. It doesn't mean you cannot reuse code at all; you may still have some shared code, but you'll need to make sure it's actually reusable. You may want to create some shared libraries to achieve it, and they are not much less of a problem than microservices themselves. Always think twice before you reuse anything - sometimes some copy-paste can save you a lot of time in the future.</p>
+<h2>Prepare for the future</h2>
+<p>Another aspect which limiting code reuse affects is refactoring. You may think that it's easier to do refactoring when having more shared code, as you may do it in one round. But this isn't so easy with microservices. They are usually separate projects, and even if you have shared libraries, you may need to synchronize the changes in all of them which are using that library. And one day you may be fed up with the technology you use right now, or it may just become obsolete, and you may want to change it to something else. With limited code reuse and modular (if not microservice) architecture, it's much easier to use new frameworks, languages, or even platforms. You're already prepared for that, technically and mentally. And even if you want to stick with what you have right now, refactoring things within a module is actually much easier when it doesn't share too much code with others.</p>
+<h2>Know when to extract</h2>
+<p>So it's the time. You feel it in your bones. But you need to have some logical reasons. How to tell that it's time to extract something into a microservice? Try to go through the checklist below to find some of the potential reasons:</p>
+<ul>
+<li>Your codebase has grown so much that maintaining monolith becomes a pain.</li>
+<li>Part of your application is used more (or less) often than others and you would like to scale it separately from other parts of your app.</li>
+<li>Some parts of the code need to be deployed more (or less) often than the rest, and the deployment of the whole app is somehow painful.</li>
+<li>You want to reuse the functionality that some piece of code provides in other applications, but you don't want to reuse the code (e.g. as a shared library).</li>
+<li>Your team has grown and it's much harder now to work on one codebase without interrupting each other and causing conflicts.</li>
+</ul>
+<p>As you can see, being prepared for potential split makes solving scaling problems much easier. And by scaling I don't only mean performance concerns - it may also mean scaling in terms of size, development process, team size or maintanance.</p>
+<h2>Know how to extract</h2>
+<p>If you have already thought about the modularity of your application, it's much easier now to split things into chunks. But there are many concerns left still, just to name some of them:</p>
+<ul>
+<li>How it should communicate with, or how it should be reached from other applications?</li>
+<li>How to consume the service from other applications?</li>
+<li>Where, when and how should it be deployed?</li>
+<li>Who should be responsible for it?</li>
+<li>How to handle bits of shared code that candidate for extraction is making use of?</li>
+<li>Which technologies to choose for it?</li>
+</ul>
+<p>There are lots of things to think about when transforming into microservice, so make sure you have thought about them before beginning the process. In a longer term, the microservice architecture may be extremely beneficial for you, but it may also become the source of serious problems, especially when you're not well prepared. It's up to you to decide if it's right or not - and sometimes the only way to find it out is to try it on your own. Just make sure you know what are you getting into.</p>
+<h2>Some more concerns</h2>
+<p>Other things worth considering when moving towards microservices may include:</p>
+<ul>
+<li>Deployment - how to configure the tooling?</li>
+<li>Monitoring - how to make sure that the service is working properly?</li>
+<li>Updates - how to handle service downtimes without breaking the user experience?</li>
+<li>Backwards compatibility - how to make changes without breaking other parts of the system?</li>
+<li>Size - how much should be extracted?</li>
+<li>Growth - how much can be added to the service without causing additional issues?</li>
+</ul>
+<p>And the list goes on, and on...</p>
+<h2>Summary</h2>
+<p>Microservices may be the right solution for your system. They can solve some of the issues that are mostly unsolvable in the monolithic architecture. But they also bring their own bag of troubles that you have to deal with instead. I personally really appreciate this approach, but I can also see a lot of reasons to not do it or to do it in a limited scale. Getting my hands dirty with moving things out of monolith into services, creating new services, or even getting rid of some of them added a lot to my toolbox, and I'm really happy to share my experiences and thoughts with you. Hope you can find some value in them as well.</p>
+<p>In future posts I would like to address some of the concerns (and some of the benefits) in a bit more detailed way, so stay tuned! If you have any questions or comments, feel free to post them here or on Twitter - it's alway great to hear what you think!</p>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.identifier = '2017-07-23T18:00:00+00:00';
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//bartsokol.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://twitter.com/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pl.linkedin.com/in/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/bartsokol">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Bartosz Sokół 2016. Theme based on <a href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="http://bart-sokol.info//javascripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://bart-sokol.info//javascripts/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://bart-sokol.info//javascripts/clean-blog.min.js"></script>
+    
+    <!-- Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-3573675-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+</body>
+
+</html>

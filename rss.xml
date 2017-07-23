@@ -5,6 +5,16 @@
     <description>Technology. By human, for human.
 </description>
     <item>
+      <title>Approaching Microservices in a safer way</title>
+      <guid>http://bart-sokol.info//blog/2017/07-23-approaching-microservices-in-a-safer-way</guid>
+      <link>http://bart-sokol.info//blog/2017/07-23-approaching-microservices-in-a-safer-way/index.html</link>
+      <pubDate>Sun, 23 Jul 2017 18:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Microservices. You've probably heard about them million times. It's inevitable to avoid this if you're at least a bit interested in software architecture. Actually, you've heard about them so many times that you have to try them for your own! But should you? Is it the right approach for your application? Will it solve any of your issues? Or will it be the source of a terrible headache? Let's try to get some answers to those questions!&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
       <title>An alternative take on application architecture</title>
       <guid>http://bart-sokol.info//blog/2017/02-05-an-alternative-take-on-application-architecture</guid>
       <link>http://bart-sokol.info//blog/2017/02-05-an-alternative-take-on-application-architecture/index.html</link>
