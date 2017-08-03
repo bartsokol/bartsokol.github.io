@@ -5,6 +5,16 @@
     <description>Technology. By human, for human.
 </description>
     <item>
+      <title>Not so obvious benefits of Microservices</title>
+      <guid>http://bart-sokol.info//blog/2017/08-03-not-so-obvious-benefits-of-microservices</guid>
+      <link>http://bart-sokol.info//blog/2017/08-03-not-so-obvious-benefits-of-microservices/index.html</link>
+      <pubDate>Thu, 03 Aug 2017 23:00:00 GMT</pubDate>
+      <description>&lt;p&gt;Recently I wrote a bit about how to approach microservice architecture, but I haven't really mentioned why should you bother. It turns out that microservices can have some serious pros compared to monolithic architecture - but they won't be applicable in every case. There can also be some serious cons, but this will be a topic for another post, hopefully coming soon. So, let's start with the goodies.&lt;/p&gt;
+
+
+</description>
+    </item>
+    <item>
       <title>Approaching Microservices in a safer way</title>
       <guid>http://bart-sokol.info//blog/2017/07-23-approaching-microservices-in-a-safer-way</guid>
       <link>http://bart-sokol.info//blog/2017/07-23-approaching-microservices-in-a-safer-way/index.html</link>
